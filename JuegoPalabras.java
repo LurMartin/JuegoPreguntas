@@ -16,6 +16,8 @@ public class JuegoPalabras {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Vista vista=new Vista();
+        Controlador controlador=new Controlador(vista);
     }
     
 }
