@@ -5,10 +5,36 @@
  */
 package juegopalabras;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 /**
  *
  * @author Lourdes
  */
-public class Controlador {
+public class Controlador implements KeyListener{
+    private Vista vista;
+    private Modelo modelo;
+    
+    public Controlador (Vista vista){
+        this.vista=vista;
+        vista.addKeyListener(this);
+        modelo=new Modelo();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
