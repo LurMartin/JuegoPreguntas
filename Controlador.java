@@ -15,20 +15,20 @@ import java.awt.event.KeyListener;
 public class Controlador implements KeyListener{
     private Vista vista;
     private Modelo modelo;
-    char letraPulsada;
+    private char letraPulsada;
     public Controlador (Vista vista){
         this.vista=vista;
         vista.addKeyListener(this);
         modelo=new Modelo();
-        
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
         letraPulsada=e.getKeyChar();
-        if(letraPulsada=='a' || letraPulsada=='b' || letraPulsada=='c'){//Envio letra pulsada
+        if(modelo.isRespondido()==true && (letraPulsada=='a' || letraPulsada=='b' || letraPulsada=='c' )){//Envio letra pulsada
             vista.setSolucion(modelo.opcionElegida(letraPulsada));
             vista.setContador(modelo.getContador());
+            modelo.setRespondido(false);
         }
         vista.repaint();
     }
@@ -39,10 +39,12 @@ public class Controlador implements KeyListener{
             System.exit(0);
         }
         if(e.getKeyCode()==KeyEvent.VK_ENTER){
-            vista.setPregunta(modelo.darPreguntas());
+            vista.setPregunta(modelo.darPregunta());
             vista.setOpcionA(modelo.ponerRespuesta1());
             vista.setOpcionB(modelo.ponerRespuesta2());
             vista.setOpcionC(modelo.ponerRespuesta3());
+            vista.setRespuesta();
+            modelo.setRespondido(true);
             vista.repaint();
         }
     }
