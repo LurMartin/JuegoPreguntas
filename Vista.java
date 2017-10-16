@@ -19,8 +19,7 @@ public class Vista extends JFrame{
     private String opcionA;
     private String opcionB;
     private String opcionC;
-    private String respuestaAcertada;
-    private String respuestaErronea;
+    private String respuesta;
     private String contadorAciertos="0";
     
     public Vista(){
@@ -51,29 +50,37 @@ public class Vista extends JFrame{
         g.drawString(opcionC, 50, 500);
         //contador de aciertos
         g.setColor(Color.orange);
-        g.drawString("Aciertos: ",800, 120);
+        g.drawString("Aciertos: ",850, 200);
         g.setColor(Color.orange);
-        g.drawString(contadorAciertos, 1000, 120);
+        g.drawString(contadorAciertos, 1000, 200);
         //Resaltar pregunta acertada o fallada
-        if (respuestaAcertada.equals("opcionA")){
+        if (respuesta.equals("opcionA")){
             g.setColor(Color.green);
             g.drawString(opcionA, 50, 370);
             g.drawString("¡Respuesta correcta!", 380, 600);
         }
-        if (respuestaAcertada.equals("opcionB")){
+        if (respuesta.equals("opcionB")){
             g.setColor(Color.green);
             g.drawString(opcionB, 50, 440);
             g.drawString("¡Respuesta correcta!", 380, 600);
         }
-        if (respuestaAcertada.equals("opcionC")){
+        if (respuesta.equals("opcionC")){
             g.setColor(Color.green);
             g.drawString(opcionC, 50, 500);
             g.drawString("¡Respuesta correcta!", 380, 600);
         }
-        if(respuestaErronea.equals("opcionIncorrecta")){
+        if(respuesta.equals("opcionIncorrecta")){
             g.setColor(Color.red);
             g.drawString("Respuesta incorrecta", 380, 600);
             
+        }
+        if(contadorAciertos.equals("FIN")){
+            g.setColor(Color.white);
+            g.fillRect(0,100,1200,720);
+            Font fuente=new Font("Harlow-solid",Font.BOLD,100);
+            g.setFont(fuente);
+            g.setColor(Color.ORANGE);
+            g.drawString("El juego ha finalizado", 100, 400);
         }
     }
     
@@ -91,13 +98,11 @@ public class Vista extends JFrame{
         this.opcionC=opcionC;
     }
     public void setSolucion(String solucion){
-        if (solucion.equals("opcionIncorrecta")){
-            respuestaErronea=solucion;
-        }
-        else{
-            respuestaAcertada=solucion;
-        }
-        
+        respuesta=solucion;
+    }
+
+    public void setRespuesta() {
+        this.respuesta="";
     }
    
     public void setContador (String contadorAciertos){
