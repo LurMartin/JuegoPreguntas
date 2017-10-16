@@ -12,11 +12,11 @@ import java.awt.event.KeyListener;
  *
  * @author Lourdes
  */
-public class ControladorJ implements KeyListener{
+public class Controlador implements KeyListener{
     private Vista vista;
     private Modelo modelo;
     char letraPulsada;
-    public ControladorJ (Vista vista){
+    public Controlador (Vista vista){
         this.vista=vista;
         vista.addKeyListener(this);
         modelo=new Modelo();
