@@ -12,29 +12,43 @@ import java.awt.event.KeyListener;
  *
  * @author Lourdes
  */
-public class Controlador implements KeyListener{
+public class ControladorJ implements KeyListener{
     private Vista vista;
     private Modelo modelo;
-    
-    public Controlador (Vista vista){
+    char letraPulsada;
+    public ControladorJ (Vista vista){
         this.vista=vista;
         vista.addKeyListener(this);
         modelo=new Modelo();
+        
     }
 
     @Override
-    public void keyTyped(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyTyped(KeyEvent e) {
+        letraPulsada=e.getKeyChar();
+        if(letraPulsada=='a' || letraPulsada=='b' || letraPulsada=='c'){//Envio letra pulsada
+            vista.setSolucion(modelo.opcionElegida(letraPulsada));
+            vista.setContador(modelo.getContador());
+        }
+        vista.repaint();
     }
 
     @Override
-    public void keyPressed(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){ //si quiero salirme al pulsar escape
+            System.exit(0);
+        }
+        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+            vista.setPregunta(modelo.darPreguntas());
+            vista.setOpcionA(modelo.ponerRespuesta1());
+            vista.setOpcionB(modelo.ponerRespuesta2());
+            vista.setOpcionC(modelo.ponerRespuesta3());
+            vista.repaint();
+        }
     }
 
     @Override
-    public void keyReleased(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void keyReleased(KeyEvent e) {
+     }
     
 }
